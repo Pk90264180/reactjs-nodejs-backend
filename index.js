@@ -6,14 +6,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
+const DB =
+  "mongodb+srv://Pk90264180:288AWF%40Xr6B8nnV@cluster0.bjvhzte.mongodb.net/reactbyme?retryWrites=true&w=majority";
 
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect("mongodb://127.0.0.1/reactlink", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(function () {
     console.log("Connected to MONGOD !!");
   })
@@ -33,7 +32,7 @@ const User = new mongoose.model("User", userSchema);
 //Routes
 
 app.get("/", (req, res) => {
-  res.send("this is register and login api by me ");
+  res.send("this is home page");
 });
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
